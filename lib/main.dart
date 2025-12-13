@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:p6_mopro/routes/app_pages.dart';
 import 'package:p6_mopro/routes/app_routes.dart';
+import 'package:p6_mopro/core/theme/app_theme.dart';
+import 'package:p6_mopro/view_models/theme_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +22,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+
+      initialBinding: BindingsBuilder(() {
+        Get.put(ThemeController());
+      }),
+
+
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+
       initialRoute: Routes.home,
       getPages: AppPages.pages,
     );
